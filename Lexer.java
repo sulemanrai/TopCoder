@@ -10,11 +10,14 @@ public class Lexer {
 			return stringArrayconsumed;
 		} else {
 			sortedtokens = SortAndFindMaxToken(tokens);
+			//System.out.println(Arrays.toString(sortedtokens));
 			while (input.length() != 0) {				
 				input = check_if_token_exists(sortedtokens, input);
+				//System.out.println((input));
 				if (input.length() != 0) {
 					input = input.substring(1);
 				}
+				//System.out.println("input"+input);
 			}
 
 			consumed = new String[number_consumed];			
@@ -48,7 +51,7 @@ public class Lexer {
 		while (input.length() != 0) {
 			for (int i = 0; i < tokens.length; i++) {
 				if (input.length() >= tokens[i].length()) {
-					token_exists = (input.substring(0, tokens[i].length()).equals(tokens[i]));
+					token_exists = (input.substring(0, tokens[i].length()).equals(tokens[i]));					
 					if (token_exists == true) {
 						stringArrayconsumed[number_consumed] = tokens[i];
 						number_consumed++;
@@ -58,12 +61,15 @@ public class Lexer {
 					} else {
 						output = input;
 					}
-
+				} else {
+					token_exists = false;
 				}
+				//System.out.println("tokenexits "+token_exists);
 			}
 			if (token_exists == false) {
 				break;
 			}
+			
 		}
 		return output;
 	}
